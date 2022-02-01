@@ -1,6 +1,7 @@
 import { DefaultTheme } from "styled-components";
 
 export const lightTheme: DefaultTheme = {
+  defaultMaxWidth: "1080px",
   brandWhite: "#FEFEFE",
   brandBlue: {
     inactive: "#298DE2",

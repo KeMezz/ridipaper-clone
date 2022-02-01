@@ -2,6 +2,7 @@ import "styled-components";
 
 declare module "styled-components" {
   export interface DefaultTheme {
+    defaultMaxWidth: string;
     brandWhite: string;
     brandBlue: {
       active: string;

@@ -1,10 +1,21 @@
 import { useViewportScroll } from "framer-motion";
-import { useEffect, useState } from "react";
+import { useEffect, useLayoutEffect, useState } from "react";
 import styled from "styled-components";
 
-const Wrapper = styled.header`
+interface iIsFixed {
+  isFixed: boolean;
+}
+
+const Wrapper = styled.header<iIsFixed>`
   width: 100vw;
   height: 50px;
+  top: 0;
+  left: 0;
+  position: fixed;
+  background-color: ${(props) =>
+    props.isFixed ? props.theme.bgColor.mainBg : "transparent"};
+  box-shadow: ${(props) =>
+    props.isFixed ? "0 0 5px rgba(0,0,0,0.2)" : "none"};
 `;
 
 const HeaderContainer = styled.div`
@@ -16,10 +27,6 @@ const HeaderContainer = styled.div`
   justify-content: space-between;
   align-items: center;
 `;
-
-interface iIsFixed {
-  isFixed: boolean;
-}
 
 const Logo = styled.div<iIsFixed>`
   font-size: 22px;
@@ -48,6 +55,9 @@ const BuyBtn = styled.button<iIsFixed>`
 function Header() {
   const [isFixed, setIsFixed] = useState(false);
   const { scrollY } = useViewportScroll();
+  useLayoutEffect(() =>
+    scrollY.get() > 50 ? setIsFixed(true) : setIsFixed(false)
+  );
   useEffect(
     () =>
       scrollY.onChange(() =>
@@ -56,7 +66,7 @@ function Header() {
     [scrollY]
   );
   return (
-    <Wrapper>
+    <Wrapper isFixed={isFixed}>
       <HeaderContainer>
         <Logo isFixed={isFixed}>
           <span>ridi</span>paper

@@ -1,5 +1,5 @@
+import { motion, Variants } from "framer-motion";
 import styled from "styled-components";
-import Header from "./Header";
 import landingImage from "../Image/bg-landing.webp";
 
 const MainSection = styled.section`
@@ -10,25 +10,26 @@ const MainSection = styled.section`
   background-size: cover;
   background-position: center;
 `;
-const SectionText = styled.div`
+const SectionText = styled(motion.div)`
   display: flex;
   flex-direction: column;
   max-width: 1080px;
   padding: 0 40px;
   margin: 0 auto;
-  justify-content: center;
-  height: 100%;
+  height: calc(100% - 50px);
+  justify-content: flex-end;
+  padding-bottom: 230px;
   color: ${(props) => props.theme.brandWhite};
   h2 {
     font-size: 40px;
-    font-weight: 300;
+    font-weight: 200;
     padding-bottom: 20px;
   }
   h1 {
     text-transform: uppercase;
     font-size: 76px;
     font-weight: 500;
-    span {
+    b {
       font-weight: 900;
     }
   }
@@ -46,17 +47,40 @@ const SectionText = styled.div`
   }
 `;
 
+const stVariants: Variants = {
+  animate: {
+    transition: {
+      staggerChildren: 0.3,
+      delayChildren: 0.5,
+    },
+  },
+};
+
+export const textVariants: Variants = {
+  initial: {
+    opacity: 0,
+    y: 30,
+  },
+  animate: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      type: "tween",
+      duration: 0.6,
+    },
+  },
+};
+
 function Main() {
   return (
     <>
       <MainSection>
-        <Header />
-        <SectionText>
-          <h2>세상이 나의 서재가 된다</h2>
-          <h1>
-            <span>ridi</span>paper
-          </h1>
-          <button>구매하기</button>
+        <SectionText variants={stVariants} initial="initial" animate="animate">
+          <motion.h2 variants={textVariants}>세상이 나의 서재가 된다</motion.h2>
+          <motion.h1 variants={textVariants}>
+            <b>ridi</b>paper
+          </motion.h1>
+          <motion.button variants={textVariants}>구매하기</motion.button>
         </SectionText>
       </MainSection>
     </>

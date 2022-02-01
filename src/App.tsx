@@ -1,8 +1,14 @@
 import { createGlobalStyle } from "styled-components";
+import Accessory from "./Components/Accessory";
 import CoreFeatures from "./Components/CoreFeatures";
+import Details from "./Components/Details";
+import FontsIntroduction from "./Components/FontsIntroduction";
+import Footer from "./Components/Footer";
 import Header from "./Components/Header";
 import Main from "./Components/Main";
 import SellingPoint from "./Components/SellingPoint";
+import Specification from "./Components/Specification";
+import Structure from "./Components/Structure";
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -20,6 +26,12 @@ function App() {
       <Main />
       <SellingPoint />
       <CoreFeatures />
+      <Structure />
+      <Details />
+      <FontsIntroduction />
+      <Accessory />
+      <Specification />
+      <Footer />
     </>
   );
 }

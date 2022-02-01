@@ -1,4 +1,5 @@
 import { createGlobalStyle } from "styled-components";
+import CoreFeatures from "./Components/CoreFeatures";
 import Header from "./Components/Header";
 import Main from "./Components/Main";
 import SellingPoint from "./Components/SellingPoint";
@@ -18,6 +19,7 @@ function App() {
       <Header />
       <Main />
       <SellingPoint />
+      <CoreFeatures />
     </>
   );
 }

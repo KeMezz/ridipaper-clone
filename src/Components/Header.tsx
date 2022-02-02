@@ -7,6 +7,7 @@ interface iIsFixed {
 }
 
 const Wrapper = styled.header<iIsFixed>`
+  z-index: 100;
   width: 100vw;
   height: 50px;
   top: 0;
@@ -55,8 +56,9 @@ const BuyBtn = styled.button<iIsFixed>`
 function Header() {
   const [isFixed, setIsFixed] = useState(false);
   const { scrollY } = useViewportScroll();
-  useLayoutEffect(() =>
-    scrollY.get() > 50 ? setIsFixed(true) : setIsFixed(false)
+  useLayoutEffect(
+    () => (scrollY.get() > 50 ? setIsFixed(true) : setIsFixed(false)),
+    [setIsFixed]
   );
   useEffect(
     () =>
